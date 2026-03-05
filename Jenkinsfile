@@ -36,6 +36,8 @@ sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest"
         stage('Push Docker Image') {
             steps {
                 script {
+                             sh 'export DOCKER_HOST=unix:///var/run/docker.sock'
+                             
                     docker.withRegistry('', 'DockerHubCred') {
                         // Tag the image with the appropriate version and latest
                         sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
