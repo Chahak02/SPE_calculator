@@ -48,7 +48,7 @@
         # image: chahak02/calculator
         image: "{{ image_name }}:{{ image_tag }}"
         state: started
-        restart_policy: always
+        #restart_policy: always
         # tty: true
         # interactive: true
         detach: true
