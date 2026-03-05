@@ -51,6 +51,4 @@
         restart_policy: always
         tty: true
         interactive: true
-        
-    - name: Run calculator interactively
-      command: docker run -it --rm chahak02/calculator
+
