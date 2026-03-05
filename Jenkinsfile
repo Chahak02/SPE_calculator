@@ -25,27 +25,45 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE_NAME}:${IMAGE_TAG}", '.')
-                    // Optionally, also tag the image as "latest" for consistency
-                    docker.build("${DOCKER_IMAGE_NAME}:latest", '.')
+                    // docker.build("${DOCKER_IMAGE_NAME}:${IMAGE_TAG}", '.')
+                    // // Optionally, also tag the image as "latest" for consistency
+                    // docker.build("${DOCKER_IMAGE_NAME}:latest", '.')
+                    def app = docker.build("${DOCKER_IMAGE_NAME}:${IMAGE_TAG}")
+sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest"
                 }
             }
         }
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('', 'DockerHubCred') {
-                        // Tag the image with the appropriate version and latest
-                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/calculator:${IMAGE_TAG}"
-                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/calculator:latest"
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('', 'DockerHubCred') {
+        //                 // Tag the image with the appropriate version and latest
+        //                 sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+        //                 sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
 
-                        // Push both the versioned tag and latest tag
-                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
-                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
-                    }
-                }
+        //                 // Push both the versioned tag and latest tag
+        //                 sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+        //                 sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
+        //             }
+        //         }
+        //     }
+        // }
+        stage('Push Docker Image') {
+    steps {
+        script {
+            docker.withRegistry('', 'DockerHubCred') {
+
+                // Tag image correctly
+                sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
+
+                // Push images
+                sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
             }
         }
+    }
+}
         stage('Run Ansible Playbook') {
             steps {
                 script {
