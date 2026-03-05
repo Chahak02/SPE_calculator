@@ -42,14 +42,14 @@
         state: absent
         force_kill: true
 
-    - name: Run container
-      docker_container:
-        name: calculator
-        # image: chahak02/calculator
-        image: "{{ image_name }}:{{ image_tag }}"
-        state: started
-        restart_policy: always
-        tty: true
-        interactive: true
-        # ports:
-        #   - "8081:8080"
+    # - name: Run container
+    #   docker_container:
+    #     name: calculator
+    #     # image: chahak02/calculator
+    #     image: "{{ image_name }}:{{ image_tag }}"
+    #     state: started
+    #     restart_policy: always
+    #     tty: true
+    #     interactive: true
+   - name: Run calculator interactively
+      command: docker run -it --rm chahak02/calculator
