@@ -6,21 +6,27 @@
   # become_user: root     # Run tasks as root
   connection: local
   tasks:
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
+    # - name: Install Docker
+    #   apt:
+    #     name: docker.io
+    #     state: present
 
-    - name: Start Docker service
-      service:
-        name: docker
-        state: started
+    # - name: Start Docker service
+    #   service:
+    #     name: docker
+    #     state: started
 
     - name: Pull Docker image
       docker_image:
         name: chahak02/calculator
         source: pull
 
+    - name: Remove old container if exists
+      docker_container:
+        name: calculator
+        state: absent
+        force_kill: true
+        
     - name: Run container
       docker_container:
         name: calculator
