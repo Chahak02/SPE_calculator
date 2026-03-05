@@ -61,10 +61,19 @@ pipeline {
     post {
         success {
             echo 'Pipeline successfully completed!'
+            emailtext(
+                to:'chahakagarwal02@gmail.com',
+                subject: 'Build success: Scientific Calculator',
+                body: 'The Jenkins pipeline for the Scientific calculator project has completed successfully.'
+            )
         }
         failure {
             echo 'Pipeline failed!'
-            // Add failure notifications here (e.g., Slack, email)
+            emailtext(
+                to:'chahakagarwal02@gmail.com',
+                subject: 'Build failure: Scientific Calculator',
+                body: 'The Jenkins pipeline for the Scientific calculator project has failed.'
+            )
         }
     }
 }
