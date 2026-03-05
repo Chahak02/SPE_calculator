@@ -36,12 +36,12 @@ pipeline {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
                         // Tag the image with the appropriate version and latest
-                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/chahak02/calculator:${IMAGE_TAG}"
-                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/chahak02/calculator:latest"
+                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/calculator:${IMAGE_TAG}"
+                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/calculator:latest"
 
                         // Push both the versioned tag and latest tag
-                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/scientific-calculator:${IMAGE_TAG}"
-                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/scientific-calculator:latest"
+                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
                     }
                 }
             }
