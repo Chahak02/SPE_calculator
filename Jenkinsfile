@@ -69,7 +69,7 @@ sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest"
     post {
         success {
             echo 'Pipeline successfully completed!'
-            emailtext(
+            emailext(
                 to:'chahakagarwal02@gmail.com',
                 subject: 'Build success: Scientific Calculator',
                 body: 'The Jenkins pipeline for the Scientific calculator project has completed successfully.'
@@ -77,7 +77,7 @@ sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest"
         }
         failure {
             echo 'Pipeline failed!'
-            emailtext(
+            emailext(
                 to:'chahakagarwal02@gmail.com',
                 subject: 'Build failure: Scientific Calculator',
                 body: 'The Jenkins pipeline for the Scientific calculator project has failed.'
