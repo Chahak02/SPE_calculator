@@ -18,5 +18,6 @@ WORKDIR /app
 #copy the generated JAR from the build stage
 COPY target/Calculator-1.0-SNAPSHOT.jar /app/calculator.jar
 
+
 #RUN the application
 ENTRYPOINT ["java", "-jar", "calculator.jar"]

@@ -48,5 +48,8 @@
         # image: chahak02/calculator
         image: "{{ image_name }}:{{ image_tag }}"
         state: started
-        ports:
-          - "8081:8080"
+        restart_policy: always
+        tty: true
+        interactive: true
+        # ports:
+        #   - "8081:8080"
