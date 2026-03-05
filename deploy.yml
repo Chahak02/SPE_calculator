@@ -13,6 +13,7 @@
 
   tasks:
 
+
     #  - name: Install Docker
     #   apt:
     #     name: docker.io
@@ -22,6 +23,12 @@
     #   service:
     #     name: docker
     #     state: started
+    - name: Install Python dependencies for Docker modules
+      pip:
+        name:
+          - docker
+          - requests
+        state: present
 
     - name: Pull Docker image
       docker_image:
