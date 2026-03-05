@@ -33,42 +33,43 @@ sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest"
                 }
             }
         }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+                     
+
+        //             docker.withRegistry('', 'DockerHubCred') {
+        //                 // Tag the image with the appropriate version and latest
+        //                 sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+        //                 sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
+
+        //                 // Push both the versioned tag and latest tag
+        //                 sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+        //                 sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
+        //             }
+        //         }
+        //     }
+        // }
+
         stage('Push Docker Image') {
-            steps {
-                script {
-                             sh 'export DOCKER_HOST=unix:///var/run/docker.sock'
-                             
-                    docker.withRegistry('', 'DockerHubCred') {
-                        // Tag the image with the appropriate version and latest
-                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
-                        sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'DockerHubCred',
+            usernameVariable: 'USER',
+            passwordVariable: 'PASS'
+        )]) {
 
-                        // Push both the versioned tag and latest tag
-                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
-                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
-                    }
-                }
-            }
+            sh 'echo $PASS | docker login -u $USER --password-stdin'
+
+            sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+            sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
+
+            sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+            sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
         }
-//         stage('Push Docker Image') {
-//     steps {
-//         script {
-//             sh 'export DOCKER_HOST=unix:///var/run/docker.sock'
+    }
+}
 
-//             docker.withRegistry('', 'DockerHubCred') {
-
-         
-//                 // Tag image correctly
-//                 sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
-//                 sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
-
-//                 // Push images
-//                 sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
-//                 sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
-//             }
-//         }
-//     }
-// }
         stage('Run Ansible Playbook') {
             steps {
                 script {
