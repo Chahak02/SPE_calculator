@@ -3,10 +3,12 @@
   hosts: localhost
   # become: yes           # Enable sudo
   # become_method: sudo   # Explicitly use sudo
-  # become_user: root     # Run tasks as root
+  #  become_user: root     # Run tasks as root
   connection: local
+
   tasks:
-    # - name: Install Docker
+  
+    #  - name: Install Docker
     #   apt:
     #     name: docker.io
     #     state: present
@@ -26,7 +28,7 @@
         name: calculator
         state: absent
         force_kill: true
-        
+
     - name: Run container
       docker_container:
         name: calculator
