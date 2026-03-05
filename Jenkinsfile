@@ -60,7 +60,7 @@ sh "docker tag ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest"
                     ansiblePlaybook(
                         playbook: 'deploy.yml',
                         inventory: 'inventory.ini',
-                        extras: '-K'
+                        // extras: '-K'
                     )
                 }
             }
