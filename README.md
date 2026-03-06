@@ -109,6 +109,4 @@ Command Line Interface (CLI) Scientific Calculator.
 
 ---
 
-If you want, I can also show you **3 small additions that make a GitHub README look much more professional** (like badges, screenshots, and pipeline status). Those are the things that make repos look **industry-level instead of student projects**.
 
-5. Exit
