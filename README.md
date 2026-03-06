@@ -91,18 +91,19 @@ Calculator
 ├── pom.xml
 └── README.md
 ```
----
-````markdown
 
+---
 
 # Quick Start
 
-### 1.Clone the repository
+Follow the steps below to build and run the Scientific Calculator application.
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/scientific-calculator.git
 cd scientific-calculator
-```
+````
 
 ### 2. Build the Application
 
@@ -141,14 +142,6 @@ Run the Ansible playbook to deploy and start the container.
 ```bash
 ansible-playbook -i inventory.ini deploy.yml
 ```
-
-````
-
-Just **replace this line** with your actual repo link:
-
-```text
-https://github.com/your-username/scientific-calculator.git
-````
 
 ---
 
