@@ -102,7 +102,7 @@ Follow the steps below to build and run the Scientific Calculator application.
 
 ```bash
 git clone https://github.com/Chahak02/SPE_calculator.git
-cd scientific-calculator
+cd SPE_calculator
 ````
 
 ### 2. Build the Application
