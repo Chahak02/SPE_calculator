@@ -91,15 +91,12 @@ Calculator
 ├── pom.xml
 └── README.md
 ```
-
 ---
-
 ````markdown
+
 # Quick Start
 
-Follow the steps below to build and run the Scientific Calculator application.
-
-### 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/your-username/scientific-calculator.git
