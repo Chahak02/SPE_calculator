@@ -94,6 +94,66 @@ Calculator
 
 ---
 
+````markdown
+# Quick Start
+
+Follow the steps below to build and run the Scientific Calculator application.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/scientific-calculator.git
+cd scientific-calculator
+````
+
+### 2. Build the Application
+
+Use Maven to compile the project and generate the executable JAR file.
+
+```bash
+mvn clean package
+```
+
+### 3. Run the Application
+
+Run the generated JAR file from the `target` directory.
+
+```bash
+java -jar target/calculator.jar
+```
+
+### 4. Run Using Docker
+
+Build the Docker image.
+
+```bash
+docker build -t scientific-calculator .
+```
+
+Run the Docker container.
+
+```bash
+docker run -it scientific-calculator
+```
+
+### 5. Deploy Using Ansible
+
+Run the Ansible playbook to deploy and start the container.
+
+```bash
+ansible-playbook -i inventory.ini deploy.yml
+```
+
+````
+
+Just **replace this line** with your actual repo link:
+
+```text
+https://github.com/your-username/scientific-calculator.git
+````
+
+---
+
 # Scientific Calculator Features
 
 The command-line calculator supports the following operations:
