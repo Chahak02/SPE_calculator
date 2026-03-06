@@ -1,7 +1,3 @@
-Your content is good but the **formatting is messy and inconsistent** (capitalization, spacing, numbered list, sections). GitHub README should use **Markdown headings, lists, and code blocks** so it renders cleanly.
-
-Here’s a **properly structured and polished README version** you can paste directly into `README.md`.
-
 ---
 
 # Scientific Calculator – DevOps CI/CD Pipeline
