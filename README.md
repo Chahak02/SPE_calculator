@@ -1,3 +1,9 @@
+![Java](https://img.shields.io/badge/Java-17-blue)
+![Maven](https://img.shields.io/badge/Build-Maven-orange)
+![JUnit](https://img.shields.io/badge/Test-JUnit-green)
+![Docker](https://img.shields.io/badge/Container-Docker-blue)
+![Jenkins](https://img.shields.io/badge/CI-Jenkins-red)
+![Ansible](https://img.shields.io/badge/Deployment-Ansible-black)
 ---
 
 # Scientific Calculator – DevOps CI/CD Pipeline
