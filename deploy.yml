@@ -8,7 +8,7 @@
 
   vars:
     image_name: chahak02/calculator
-    image_tag: "{{ tag }}"
+    image_tag: "latest"
 
 
   tasks:
@@ -45,11 +45,9 @@
     - name: Run container
       docker_container:
         name: calculator
-        # image: chahak02/calculator
         image: "{{ image_name }}:{{ image_tag }}"
         state: started
-        #restart_policy: always
-        # tty: true
-        # interactive: true
-        detach: true
+        restart_policy: always
+        interactive: true
+        
 
