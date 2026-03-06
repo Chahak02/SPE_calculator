@@ -4,6 +4,7 @@
 ![Docker](https://img.shields.io/badge/Container-Docker-blue)
 ![Jenkins](https://img.shields.io/badge/CI-Jenkins-red)
 ![Ansible](https://img.shields.io/badge/Deployment-Ansible-black)
+
 ---
 
 # Scientific Calculator – DevOps CI/CD Pipeline
