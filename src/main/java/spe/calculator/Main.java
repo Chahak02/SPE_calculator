@@ -21,7 +21,7 @@ public class Main {
                     System.out.println("Enter a number");
                     n=sc.nextDouble();
                    try{
-                    System.out.println(Calci.squareRoot(n));
+                    System.out.println("Result="+Calci.squareRoot(n));
                    }
                    catch(IllegalArgumentException e){
                     System.out.println("Error: "+ e.getMessage());
@@ -34,7 +34,7 @@ public class Main {
                     System.out.println("Enter a number");
                    int n1=sc.nextInt();
                     try{
-                  System.out.println( Calci.factorial(n1));
+                  System.out.println("Result="+ Calci.factorial(n1));
                    
                     }
                     catch(Exception e){
@@ -47,7 +47,7 @@ public class Main {
                    n=sc.nextInt();
                    try{
                
-                    System.out.println(Calci.naturalLog(n));
+                    System.out.println("Result="+Calci.naturalLog(n));
                  
                    }
                    catch(Exception e){
@@ -62,7 +62,7 @@ public class Main {
                     System.out.println("Enter Exponent");
                     double a=sc.nextDouble();
                 try{
-                    System.out.println(Calci.power(n,a));
+                    System.out.println("Result="+Calci.power(n,a));
                 }
                 catch(Exception e){
                     System.out.println("Error: "+e.getMessage());
